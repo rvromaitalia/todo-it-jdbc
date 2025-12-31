@@ -7,13 +7,22 @@ public class Person {
     private String firstName;
     private String lastName;
 
+    // Required by frameworks, JDBC mapping, and for creating empty objects
+    // Used when an object is populated later via setters or ResultSet mapping
     public Person(){} //Public constructor
 
-    //USe this constructor as  a setter for 'Person' class fields
+    // Used when creating a Person object from database data
+    // Typically called inside DAO implementations when mapping ResultSet → Person
     public Person(int personId, String firstName, String lastName){
         this.personId = personId;
         this.lastName = lastName;
         this.firstName = firstName;
+    }
+
+    // Used when creating a new Person before it is persisted to the database
+    // The ID is set to 0 and will be replaced with a generated value on INSERT
+    public Person(String firstName, String lastName) {
+        this(0, firstName, lastName);
     }
 
 

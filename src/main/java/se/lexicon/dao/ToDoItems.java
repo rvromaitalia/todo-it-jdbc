@@ -1,6 +1,6 @@
 package se.lexicon.dao;
 
-import com.mysql.cj.util.PerVmServerConfigCacheFactory;
+import se.lexicon.model.Person;
 import se.lexicon.model.ToDo;
 
 import java.util.List;

@@ -1,6 +1,7 @@
 package se.lexicon.model;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class ToDo {
     private int toDoId;
@@ -65,4 +66,31 @@ public class ToDo {
 
     public void setTaskAssignee(Person taskAssignee) { this.taskAssignee = taskAssignee;}
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        ToDo toDo = (ToDo) o;
+        return toDoId == toDo.toDoId && done == toDo.done &&
+                Objects.equals(taskTittle, toDo.taskTittle)&&
+                Objects.equals(taskDescripton, toDo.taskDescripton) &&
+                Objects.equals(taskDeadline, toDo.taskDeadline) &&
+                Objects.equals(taskAssignee, toDo.taskAssignee);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(toDoId);
+    }
+
+    @Override
+    public String toString() {
+        return "ToDo{" +
+                "toDoId=" + toDoId +
+                ", taskTittle='" + taskTittle + '\'' +
+                ", taskDescripton='" + taskDescripton + '\'' +
+                ", taskDeadline=" + taskDeadline +
+                ", done=" + done +
+                ", taskAssignee=" + taskAssignee +
+                '}';
+    }
 }
