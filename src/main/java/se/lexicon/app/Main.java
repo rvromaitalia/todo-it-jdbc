@@ -17,9 +17,10 @@ public class Main {
         People people = new PeopleImpl();
         ToDoItems toDoItems = new ToDoItemsImpl();
 
-        Person roman = people.findbById(17)
+        //Fetch existing persons from db
+        Person roman = people.findById(17)
                 .orElseThrow(() -> new IllegalArgumentException("Person Roman not found"));
-        Person artur = people.findbById(18)
+        Person artur = people.findById(18)
                 .orElseThrow(() -> new IllegalArgumentException("Person Artur not found"));
 
         // Create todos (DB rows created with assignee_id = NULL)
@@ -36,8 +37,7 @@ public class Main {
         System.out.println("Created: " + toDo1);
         System.out.println("Created: " + toDo2);
 
-        //Now lets assign and update DB
-        // Assign + persist
+        // Assign assignees and persist changes to DB (setter changes memory; update() writes to DB)
         toDo1.setTaskAssignee(roman);
         toDoItems.update(toDo1);
 
@@ -48,7 +48,7 @@ public class Main {
         System.out.println(toDoItems.findById(toDo1.getToDoId()));
         System.out.println(toDoItems.findById(toDo2.getToDoId()));
 
-        //Change todo1 job status done(true) status:
+        // Mark todo1 as done and persist the change
         toDo1.setDone(true);
         toDoItems.update(toDo1);
         System.out.println("Updated todo1: " + toDoItems.findById(toDo1.getToDoId()));

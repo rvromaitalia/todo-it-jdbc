@@ -9,7 +9,7 @@ public interface People {
     Person create(Person person);
     List<Person> findAll();
     List <Person> findByName(String name); // match first OR last name
-    Optional<Person> findbById(int id);
+    Optional<Person> findById(int id);
     Person update(Person person);
     boolean deleteById(int id);
 }

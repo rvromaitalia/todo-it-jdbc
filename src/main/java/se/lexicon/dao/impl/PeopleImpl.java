@@ -113,7 +113,7 @@ public class PeopleImpl implements People {
      * @throws RuntimeException if the query fails
      */
     @Override
-    public Optional<Person> findbById(int id) {
+    public Optional<Person> findById(int id) {
         String sql = "SELECT person_id, first_name, last_name FROM person WHERE person_id = ?";
         try (Connection con = ConnectionFactory.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
